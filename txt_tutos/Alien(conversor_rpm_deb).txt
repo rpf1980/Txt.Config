@@ -1,0 +1,18 @@
+Instalamos alien:
+$ apt-get install alien
+
+Ahora convertimos un paquete rpm a deb:
+$ alien -d -c paquete.rpm
+
+Para instalar el paquete que acabamos de convertir:
+$ dpkg -i paquete.deb
+
+También nos puede servir para convertir archivos tar.gz a deb:
+$ alien nombre_archivo.tar.gz
+
+Podemos hacer el proceso inverso, que convertiría paquete deb a rpm:
+$ alien -r -c nombre_archivo.deb
+
+Si deseamos ver las demás opciones que nos ofrece Alien y qué otro 
+tipo de paquetes podría convertir, debemos ejecutar lo siguiente:
+$ alien -h

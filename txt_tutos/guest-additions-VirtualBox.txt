@@ -1,0 +1,17 @@
+- Necesitamos añadir un disco vacío a la máquina virtual
+- Después añadimos el cd de instalación de las guest-additions
+- Copiamos los archivos del cd de instalación y lo pegamos en 
+  un directorio que creemos en la carpeta personal de archivos.
+
+$ sudo su
+$ apt-get update
+$ apt-get upgrade
+$ dpkg --get-selections |grep gcc
+$ dpkg --get-selections |grep make
+$ dpkg --get-selections |grep linux-headers
+
+- Nos movemos al directorio donde tenemos los archivos copiados.
+- Una vez dentro:
+ $ sh ./nombredelarchivo.run
+ 
+ $ reboot

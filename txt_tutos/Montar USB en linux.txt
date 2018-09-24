@@ -1,0 +1,25 @@
+PASO 1: CREAR EL DIRECTORIO PARA MONTAR LA MEMORIA USB
+mkdir /media/usb
+
+PASO 2: IDENTIFICAR EL NOMBRE DE LA UNIDAD QUE QUEREMOS MONTAR
+ls -l /dev/sd*
+Seguidamente enchufamos el dispositivo USB en el ordenador y tecleamos de nuevo el mismo comando en la terminal:
+ls -l /dev/sd*
+
+PASO 3: MONTAR LA MEMORIA USB CON LA TERMINAL
+*En fat32:
+mount -t vfat /dev/sdb1 /media/usb
+
+
+*En ntfs:
+mount -t ntfs-3g /dev/sdb1 /media/usb
+
+*En ext4:
+mount -t ext4 /dev/sdb1 /media/usb
+
+>>Aquí estarán nuestros archivos del pen<<
+ls /media/usb
+
+PASO 5: DESMONTAR LA MEMORIA USB
+umount /media/usb
+

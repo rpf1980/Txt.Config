@@ -1,0 +1,45 @@
+Agrege la siguiente línea en el archivo de repositorios: /etc/apt/sources.list file.
+deb http://ftp.debian.org/debian/ stretch main contrib
+
+Abrir de nuevo el archivo de los repositorios: /etc/apt/sources.list file y añadir:
+deb http://ftp.debian.org/debian/ stretch main contrib
+
+
+$root>> apt-get update
+$root>> apt-get install open-vm-tools open-vm-tools-desktop
+$root>> apt-get install net-tools
+
+$root>> dpkg --get-selections |grep gcc
+$root>> dpkg --get-selections |grep make
+$root>> dpkg --get-selections |grep linux-headers
+
+# Ahora clicamos en VM de vmware para instalar el CD de las
+  vmware-tools
+  
+# Extraer el archivo .tar en una carpeta nueva. La carpeta que
+  genera la extracción de los ficheros la copiamos y pegamos
+  en /tmp
+  
+$root>> cd /tmp/vmware-tools-distrib/
+$root>> ./vmware-install.pl -d
+$root>> vmware-user-suid-wrapper
+$root>> reboot
+
+
+OTRO MODO:
+
+root@vm-log:~# apt install build-essential
+root@vm-log:~# apt install linux-headers-$(uname-r)
+
+root@vm-log:/mnt/cdrom# cp VMwareTools-10.0.9-3917699.tar.gz /opt/
+root@vm-log:/mnt/cdrom# cd /opt/
+root@vm-log:/opt# tar xfzv VMwareTools-10.0.9-3917699.tar.gz
+root@vm-log:/opt# cd vmware-tools-distrib/
+root@vm-log:/opt/vmware-tools-distrib# ./vmware-install.pl
+
+**Posible ERROR**
+Puede ser que al ejecutar el script de un error y sera que no encuentra el paquete ifconfig, para ello abrimos otro terminal y instalamos el siguiente paquete apt install net-tools y en la ruta solicitada añadiremos lo siguiente /sbin/ifconfig y ya podremos acabar la instalacion
+
+Nos solicitara algunas preguntas mas que se quedaran por defecto.
+
+Una vez terminada la instalación reiniciamos la maquina para que funcionen correctamente las tools instaladas reboot

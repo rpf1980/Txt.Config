@@ -1,0 +1,10 @@
+	INSTALAR VMWARE TOOLS EN UBUNTU SERVER
+
+- sudo mkdir /mnt/cdrom
+- sudo mount /dev/cdrom /mnt/cdrom OR sudo mount /dev/sr0 /mount/cdrom
+- ls /mnt/cdrom
+- tar xvzf /mnt/cdrom/VMwareTools-x.x.x-xxxx.tar.gz -C /tmp/
+- cd /tmp/vmware-tools-distrib/
+- sudo perl vmware-install-pl -d
+- sudo reboot
+

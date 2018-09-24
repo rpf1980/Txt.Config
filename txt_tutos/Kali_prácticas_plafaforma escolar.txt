@@ -1,0 +1,27 @@
+
+ >>ATAQUE SYN FLOOD<<
+ https://www.youtube.com/watch?v=-6LZbd9fU0I&feature=youtu.be 
+
+ -----------------------------------------------------------------
+
+ >>PRÁCTICAS DE LA PLATAFORMA LA SALLE - ATaQUES Y AMENAZAS<<
+
+ # Práctica Ataque Dos con Kali Linux:
+ https://openwebinars.net/blog/hacking-tutorial-como-hacer-ataque-ddos/
+
+ # Seminario "Mi ordenador es un Zombie":
+ https://lasallemundonuevo.sallenet.org/mod/url/view.php?id=8316
+
+ # Repositorio de flu-project (Troyano con fines educativos) URL:
+ https://lasallemundonuevo.sallenet.org/mod/url/view.php?id=8323
+
+ # Repositorio Social Engineering Toolkit 1.0 URL:
+ https://lasallemundonuevo.sallenet.org/mod/url/view.php?id=8395
+
+ # Introducción a SET 1.0 URL:
+ https://lasallemundonuevo.sallenet.org/mod/url/view.php?id=8399
+
+
+
+ 
+

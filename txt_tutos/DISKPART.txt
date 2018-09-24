@@ -1,0 +1,18 @@
+ 
+
+  --REPARAR USB EN DISKPART--
+
+  1. Windows + R
+  2. diskpart
+  3. list disk
+  4. Escribe select disk y el nº de la unidad
+  5. detail disk (detalles de la unidad)
+  6. clean
+  7. clean all (si tenemos varias particiones en la unidad)
+  8. create partition primary
+  9. select partition 1
+  10. active
+  11. format fs=fat32 quick 
+  12. format fs=ntfs quick (para unidades de disco duro)
+
+  --LISTO--

@@ -1,0 +1,20 @@
+
+  SIRVE PARA REFRESCAR LA IP EN HOST WINDOWS
+
+  ipconfig /release  --> Ordenar quitar la IP
+  ipconfig /flushdns  --> Ordenar limpiar el caché DNS
+  ipconfig /renew  --> Ordenar obtener una nueva IP
+-------------------------------------------------------------
+
+  MONTAR MANUALMENTE EL CDROM EN LA INSTALACIÓN DE KALI LINUX
+
+  Iniciamos power shell desde el isntalador
+
+ 
+  Ponemos esta línea de comandos:
+ 
+  mount -t vfat /dev/sdb /cdrom
+  exit
+ 
+  Y ahora le damos otra vez a reconocer cdrom para que curse la instalación
+--------------------------------------------------------------------------------

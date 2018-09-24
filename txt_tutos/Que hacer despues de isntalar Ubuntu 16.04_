@@ -1,0 +1,63 @@
+
+INSTALAR COMPLETAMENTE IDIOMA EN  ESPAÑOL
+https://www.redeszone.net/2013/11/07/como-cambiar-el-idioma-ubuntu-server-desde-un-terminal/
+http://linuxeros-faq.blogspot.com.es/2010/06/como-cambiar-el-idioma-en-sistemas.html
+
+POR TERMINAL:
+
+ Dentro de archivo    sudo nano /etc/environment   ponemos:
+ LANG=”es_ES.UTF-8″ 
+ LC_ALL=”es_ES.UTF-8″ 
+ LANGUAGE=”es_ES”
+
+ Dentro de archivo  sudo nano /etc/default/locale  ponemos:
+ LANG=”es_ES.UTF-8″ 
+ LC_ALL=”es_ES.UTF-8″ 
+ LANGUAGE=”es_ES”
+ 
+ Estableceremos la prioridad del idioma en: 
+ sudo nano /var/lib/locales/supported.d/loca
+ Quedaría así:
+ es_ES.UTF-8 UTF
+ en_US.UTF-8 UTF-8
+
+ sudo dpkg-reconfigure locales
+ 
+ sudo reboot
+
+ sudo apt-get update
+ sudo apt-get upgrade
+
+FORMA GRÁFICA:
+En el DASH buscamos "Language Support" "Soporte de Idiomas" y seguimos los pasos que se muestran.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+REPRODUCTOR DE VÍDEO VLC
+
+sudo apt install vlc
+--------------------------------------------------------
+REPRODUCTOR DE AUDIO AUDACIUS
+
+sudo apt install audacious
+----------------------------------------------------------------------------
+CODECS, FLASH, FUENTES ADICIONALES, DRIVERS...
+
+sudo apt install ubuntu-restricted-extras
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** Para poder ver algunos videos y ver contenido web flash en tu explorador web, es necesario instalar el plugin de Flash.
+
+sudo apt install flashplugin-installer
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Chrome 64 bits
+https://www.google.es/chrome/browser/desktop/
+sudo apt -f install (si sale algún error después de querer instalar google chrome)
+
+Chromium 32 bits
+sudo add-apt-repository ppa:chromium-daily
+sudo apt-get update
+sudo apt-get install chromium-browser
+----------------------------------------------------------------------------
+INSTALAR GESTORES DE COMPRESIÓN
+
+sudo apt-get install rar unace p7zip p7zip-full p7zip-rar unrar lzip lhasa arj sharutils mpack lzma lzop cabextract
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,9 @@
+>>> SOLUCIÓN AL PROBLEMA DE EJECUCIÓN EN MONO DEVELOP <<<
+
+$ sudo nano /usr/share/applications/monodevelop.desktop
+
+... y reemplazar la línea que dice
+$ Exec=monodevelop %F
+
+... por
+$ Exec=sh -c 'unset GNOME_DESKTOP_SESSION_ID && monodevelop %F'

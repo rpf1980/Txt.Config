@@ -1,0 +1,20 @@
+
+
+ //CREA USUARIOS en sistema Windows 7 desde línea de comandos:
+  - Primero creamos un archivo.txt que contenga el nombre de los usuarios que vamos a crear...Ej:
+    Juan
+    Mario
+    Cristina
+    Vanesa
+  - Ubicamos el archivo donde queramos (en mi caso lo tengo en Downloads)
+  - Y por último la línea que genera la magia:
+   
+ ....\Downloads>for /F %I IN (listaUsuarios.txt) DO net user /add %I
+
+ //ELIMINA usuarios de un sistema Windows 7 (SOLO CAMBIAMOS /add por /del):
+
+.....\Downloads>for /F %I IN (listaUsuarios.txt) DO net user /del %I
+
+-------------------------------------------------
+
+# Si queremos crear un .bat .... debemos poner doble %%

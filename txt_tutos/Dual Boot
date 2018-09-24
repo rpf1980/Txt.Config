@@ -1,0 +1,58 @@
+﻿
+
+  >>DUAL BOOT WINDOWS 10 + UBUNTU 16.04<<
+
+  
+1. Instalar Windows 10 --> usar todo el disco
+  
+2. Entramos en BIOS:
+     
+-Ponemos orden de arranque para USB booteable con Ubuntu
+     
+-Cambiar Secure Boot, ponerlo en modo "disable"
+  
+3. Salimos de Bios y presionamos F12 (elegir arranque, F12 para acer, podría ser
+     
+otra tecla, para instalar Ubuntu)
+  
+4. Entramos en modo Live, no instalamos.
+  
+5. Con Gparted hacemos la redimensión del disco y las particiones para el Ubuntu
+  
+6. Desde el modo Live instalamos SO linux Ubuntu
+  
+7. En primer reinicio, nos saldrá Windows... eso es normal.
+  
+8. Entramos en BIOS:
+     
+-Ponemos la BIOS por defecto de fábrica y salimos de ella
+     
+-Entramos de nuevo en BIOS
+     
+-Habilitamos Secure Boot
+     
+-En Modo Avanzado buscamos la parte que nos permite añadir opciones-arranque UEFI
+     
+-HDD... clicamos en algo parecido a eso
+    
+-Clic en Ubuntu
+     
+-Clic en Grub de Ubuntu
+     
+-Con esto habremos añadido el gestor de arranque GRUB
+  
+9. Guardamos cambios y salimos de BIOS
+  
+10. Entramos en BIOS:
+     
+-En lista de BOOT, aparecerá el nuevo gestor de arranque GRUB
+     
+-Lo ponemos en primer lugar para que arranque desde ahí
+     
+-Deshabilitamos de nuevo Secure Boot
+     
+-Guardamos cambios y salir de Bios
+  
+11. Debería de aparecer el gestor de arranque GRUB DE LINUX con los dos sistemas
+  
+   

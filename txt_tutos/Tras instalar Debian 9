@@ -1,0 +1,126 @@
+ 
+ # CONFIGURACIONES BÁSICAS TRAS LA INSTALACIÓN DE DEBIAN 9 #
+-----------------------------------------------------------------
+ 
+ 1.) Primera actualización del sistema e instalación de Synaptic:
+ 
+ $ sudo su ( y contraseña)
+ $ apt-get update 
+ $ apt-get upgrade
+ $ apt-get install synaptic 
+--------------------------------------------------------------------------------
+
+ 2.) Activamos el filtro rápido de Synaptic y construímos el índice de paquetes:
+ 
+ $ apt install apt-xapian-index
+ $ update-apt-xapian-index -vf 
+--------------------------------------------------------------------------------
+
+ 3.)  Durante la instalación de Debian por defecto sólo se incluye en los repositorios oficiales la sección “main” que contiene la mayor parte del software disponible. Sin embargo, para completar el software de nuestro sistema lo normal es que necesitemos añadir las otras dos secciones: “contrib” (playonlinux, winetrix, quake, ttf-mscorefonts-installer, etc.) y “non-free” (drivers como firmware-linux-nonfree, nvidia-driver, u otras aplicaciones y librerias como rar, p7zip-rar, icc-profiles, etc.). Para añadir estas secciones podemos utilizar Synaptic:
+
+Synaptic>Configuración>Repositorios
+
+El repositorio del medio de instalación lo podemos eliminar y, también, podemos desmarcar todos los Tipo “deb-src”. Para añadir repositorios o editarlos tenemos tres campos: URI, Distribución y Sección(es), que se corresponden por ejemplo con: http://ftp.es.debian.org/debian/, stretch y main.
+
+En cada uno de los repositorios en “Sección(es)”, donde pone main, escribimos también: contrib non-free. Una vez que hemos terminado actualizamos el sistema. En la ventana principal de Synaptic picamos en “Recargar”, “Marcar todas las actualizaciones” y “Aplicar”.
+-------------------------------------------------------------------------------------------------
+
+ 4.) Seguridad en la red: Cortafuegos y antivirus.
+
+ 4.1. Activar el cortafuegos UFW:
+ 
+ $ apt install ufw gufw
+ $ ufw status
+ $ ufw enable
+
+ 4.2. Instalar el antivirus de GNU/Linux ClamAV:
+
+ $ apt install clamav clamav-daemon clamtk
+--------------------------------------------------------------------------------------
+
+ 5.) Software del sistema:
+
+ $ apt install linux-headers-$(uname -r) 
+ $ apt install build-essential checkinstall make automake cmake autoconf git git-core dpkg wget
+
+ 5.1. Y para instalar paquetes .deb que obtengamos de lugares de confianza, en el escritorio Gnome:
+
+ $ apt install gdebi
+
+ 5.2. Y en KDE Plasma 5:
+ 
+ $ apt install gdebi-kde
+-----------------------------------------------------------------------------------------------
+
+ 6.) Tarjeta gráfica AMD/ATI y otros controladores:
+ 
+  En esta ocasión, y como en anteriores (tengo tarjeta gráfica AMD/ATI HD5770), he instalado el driver libre que está disponible junto con otros muchos en el metapaquete firmware-linux-nonfree, me funciona muy bien incluida la aceleración 3D; los efectos de escritorio de KDE Plasma evolucionan muy fluidos y con una elegancia fuera de serie.
+
+El paquete citado se puede instalar como una dependencia de otro metapaquete, firmware-linux, que también instala firmware-linux-free (aunque este debe estar instalado por defecto), otros paquetes recomendados (amd64-microcode, intel-microcode), así como las dependencias de aquel (firmware-amd-graphics firmware-misc-nonfree). Así pues, podemos instalar este que nos hará la vida más sencilla:
+
+ $ apt install firmware-linux
+
+ No obstante, cerciorarse que se instala firmware-linux-nonfree. Una vez que termine la instalación reiniciamos el sistema.
+-----------------------------------------------------------------------------------------------
+
+ 7.) Repositorio multimedia y codecs multimedia:
+
+ $ apt install ffmpeg libavcodec-extra gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad gstreamer1.0-pulseaudio vorbis-tools
+
+ 7.1. Y para la reproducción de DVDs:
+ 
+ $ apt install libdvd-pkg
+
+ ""Durante la instalación surge un mensaje en relación a libdvdcss2, que en definitiva nos indica que cuando termine la instalación ejecutemos un comando; picamos en “Aceptar” y Sí y Sí. El comando es el siguiente:""
+
+ $ dpkg-reconfigure libdvd-pkg
+-----------------------------------------------------------------------------------------------
+
+ 8.)  Tipografías:
+
+ 8.1. Podemos instalar tipografías libres:
+ 
+ $ apt install fonts-freefont-ttf fonts-freefont-otf
+
+ 8.2. Tipografías de Microsoft:
+
+ $ apt-get install ttf-mscorefonts-installer
+
+ ""Si en Synaptic en el buscador tecleamos ttf tendremos un listados de otras tipografía, y quizás allí este esa que específicamente estamos buscando""
+--------------------------------------------------------------------------------------------
+
+ 9.) OpenJDK (código abierto)
+
+  La herramienta de código abierto de JAVA pueden estar ya instalada pero nos cercioramos:
+
+ $ apt install openjdk-8-jre icedtea-8-plugin
+--------------------------------------------------------------------------------------------
+
+ 10.) Herramientas de compresión/descompresión:
+ 
+ $ apt install rar unrar zip unzip unace bzip2 lzop p7zip p7zip-full p7zip-rar
+--------------------------------------------------------------------------------------------
+
+ 11.) Gestión de discos y particiones (Linux y Windows), permisos y configuración para que se monten en el arranque:
+
+ $ apt-get install disk-manager
+---------------------------------------------------------------------------------------------
+
+ %=% ARREGLA LOS PERMISOS DE ESCRITURA EN EL PENDRIVE EN GNU/LINUX %=%
+
+ 1.) Conocer la unidad de disco:
+
+ $ df -h
+ 
+ 2.) Desmontar la unidad:
+
+ $ sudo umount /dev/sdd1
+
+ 3.) Reparar el sistema de archivos:
+
+ $ sudo fsck -r /dev/sdd1
+
+ 4.) POR ÚLTIMO, EXPULSAMOS Y VOLVEMOS A INSERTAR EL PENDRIVE Y YA PODREMOS ESCRIBIR DE NUEVO.
+----------------------------------------------------------------------------------------------
+
+
