@@ -1,5 +1,5 @@
 # Txt.Config
-**Soluciones varias:
+**Soluciones varias**:
 >> Monodevelop
 >> DualBoot
 >> Alien
