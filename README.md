@@ -1,2 +1,8 @@
 # Txt.Config
-Configuraciones, apuntes, tutoriales, refentes a sistemas UNIX
+**Soluciones varias:
+>> Monodevelop
+>> DualBoot
+>> Alien
+>> Diskpart
+>> Guest-additions
+>>> Y más...
