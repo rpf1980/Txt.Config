@@ -1,0 +1,30 @@
+**INSTRUCCIONES**
+
+//instalacion de JDK
+sudo apt-get install default-jre
+
+//instalacion de ADB y FASTBOOT
+sudo apt-get install android-tools-adb adb android-tools-fastboot fastboot
+
+
+//librerias necesarias para android studio
+sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+
+//Descomprimiendo Android Studio y copiandolo a la carpeta opt
+======================================================
+NOTA: Sustituye 183.5452501 por la version que descargaste de tu android studio.
+=======================================================
+-- Si el archivo tiene extensión .zip usa este comando=
+-------------------------------
+sudo unzip ~/Downloads/android-studio-ide-173.4720617-linux.zip -d /opt
+------------------------------
+--- Si el archivo tiene otra extensión .tar .gc utiliza este comando=
+----------------------------
+sudo tar -xvzf ~/Downloads/android-studio-ide-183.5452501-linux.tar.gz -C /opt
+------------------------------
+
+//moviendonos a la carpeta de android studio
+cd /opt/android-studio/bin
+
+//ejecutando android studio
+./studio.sh
