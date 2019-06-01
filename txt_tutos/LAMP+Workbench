@@ -5,3 +5,19 @@ https://www.youtube.com/watch?v=YggXN_xJKbs
 
 # MysqlWorbench
 https://www.youtube.com/watch?v=iS7p9NnGwl4
+
+----------------000------------------
+
+# SOLUCIÓN: posible excepción por problemas de conexión en franja horaria
+
+ //Entramos como root en nuestro servidor
+
+ $ sudo myslql -u root -p
+
+ //Establecemos zona horaria
+
+ $ SET GLOBAL time_zone = '+0:00';
+
+----------------000------------------
+
+
