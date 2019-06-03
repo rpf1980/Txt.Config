@@ -1,0 +1,43 @@
+// Descargamos la iso debian 9 32bits liviana (tipo netinst.iso)
+
+// Cuando llegamos a la parte del instalador que te permite elegir entorno gráfico, elegimos "web server"
+
+// Una vez instalada la distro:
+
+   $ apt-get update
+   $ apt-get upgrade
+   $ apt install mariadb-server
+   $ myslq_secure_installation
+   		----ponemos NO
+	    ----ponemos Contraseña
+		----ponemos SI
+		----ponemos SI
+		----ponemos SI
+		----ponemos SI  
+
+   // Debido a que el servidor utiliza la cuenta raíz para tareas como la rotación de registros y para iniciar y detener el servidor, es mejor no cambiar los detalles de autenticación de la cuenta raíz . El cambio de las credenciales de la cuenta /etc/mysql/debian.cnfpuede funcionar inicialmente, pero las actualizaciones de paquetes podrían sobrescribir esos cambios. En lugar de modificar la cuenta raíz , los mantenedores del paquete recomiendan crear una cuenta administrativa separada si necesita configurar un acceso basado en contraseña.
+
+   Para hacerlo, crearemos una nueva cuenta llamada admincon las mismas capacidades que la cuenta raíz , pero configurada para la autenticación de contraseña. Para hacer esto, abra el indicador de MariaDB desde su terminal: 
+
+   $ mysql
+   MariaDB [(none)]> GRANT ALL ON *.* TO 'nombreDelUsuarioCreadoAntes'@'localhost' IDENTIFIED BY 'contraseñaQueSea' WITH GRANT OPTION;
+
+   // Descargue los privilegios para asegurarse de que estén guardados y disponibles en la sesión actual:
+
+   MariaDB [(none)]> FLUSH PRIVILEGES;
+   MariaDB [(none)]> exit;
+
+   // Cuando se instala desde los repositorios predeterminados, MariaDB debería comenzar a ejecutarse automáticamente. Para probar esto, verifique su estado:
+
+   $ systemctl status mariadb  //En la salida que de debemos verlo activado
+
+   // Para una verificación adicional, puede intentar conectarse a la base de datos utilizando la mysqladminherramienta, que es un cliente que le permite ejecutar comandos administrativos. Por ejemplo, este comando dice que se conecte a MariaDB como root y devuelva la versión utilizando el zócalo Unix:
+
+   $ mysqladmin version
+
+   // Si configuró un usuario administrativo independiente con autenticación de contraseña, podría realizar la misma operación escribiendo:
+
+   $ mysqladmin -u usuario -p version 
+
+   // Esto significa que MariaDB está en funcionamiento y que su usuario puede autenticarse correctamente.
+
