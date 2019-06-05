@@ -57,6 +57,54 @@ https://www.youtube.com/watch?v=YggXN_xJKbs
 
   // localhost/phpmyadmin ---> En nuestro navegador
 
+  // CONEXIÓN CON GESTOR HEIDISQL
+  
+  $ su
+  $ mysql 
+  MariaDB > CREATE DATABASE nombreBaseDatos;  // Creamos una base de datos
+
+  // Necesitamos gestionar un nuevo usuario
+  MariaDB [(none)]> CREATE USER "josuevhn"@"%" IDENTIFIED BY "P@ssw0rd*";
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB [(none)]> use empresa;
+Database changed
+MariaDB [empresa]> GRANT ALL ON empresa.* TO "josuevhn"@"%";
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB [empresa]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.02 sec)
+
+MariaDB [empresa]> SELECT User,Host FROM mysql.user;
++----------+-----------+
+| User     | Host      |
++----------+-----------+
+| root     | 127.0.0.1 |
+| root     | ::1       |
+| josuevhn | localhost |
+| root     | localhost |
++----------+-----------+
+4 rows in set (0.00 sec)
+
+	
+	// SITUARNOS en nuestra DB
+
+	MariaDB [none] SHOW databases;
+	MariaDB [none] USE nombre_base_datos;
+	MariaBB [nombre_base_datos] 
+
+	// VER COMPOSICIÓN de nuestra DB
+
+	MariaDB [nombre_base_datos] DESCRIBE nombreColumnaQueSea;
+
+
+  $ cd /etc/mysql/mariadb.conf.d  // Vamos a este fichero
+  $ nano 50-server.conf           // Entramos en este otro
+  // Y debemos comentar la línea que contiene bind-address    = 127.0.0.1 y debe quedar así:
+  #bind-address   = 127.0.0.1
+
+
+
   /** BORRAR LAMP DEL SISTEMA
   $ sudo apt-get remove lamp-server^
 
