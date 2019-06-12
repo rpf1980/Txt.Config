@@ -104,6 +104,8 @@ MariaDB [empresa]> SELECT User,Host FROM mysql.user;
   #bind-address   = 127.0.0.1
 
 
+  /**LISTAR usuarios y sus bases de datos
+  mysql> select u.User,Db from mysql.user u,mysql.db d where u.User=d.User;
 
   /** BORRAR LAMP DEL SISTEMA
   $ sudo apt-get remove lamp-server^
