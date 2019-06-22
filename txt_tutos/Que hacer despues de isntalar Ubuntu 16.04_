@@ -24,6 +24,11 @@ POR TERMINAL:
  sudo dpkg-reconfigure locales
  
  sudo reboot
+ 
+ # Habilitar todos los repositorios de ubuntu
+ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse"
+
+Fuente: https://www.enmimaquinafunciona.com/pregunta/29338/no-se-puede-encontrar-el-paquete-al-intentar-instalar-los-paquetes-de-apt
 
  sudo apt-get update
  sudo apt-get upgrade
