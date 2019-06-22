@@ -46,7 +46,8 @@ https://www.youtube.com/watch?v=YggXN_xJKbs
 	----ponemos contraseña (he puesto la misma que mysql)
         ----confirmamos contraseña
 
-  $ sudo gedit /etc/apache2/apache2.conf  // Accedemos al archivo de configuración de apache2 para poder habilitar el servicio y que a la hora de conectarnos nos de servicio (localhost/phpmyadmin en navegador para probar)
+  $ sudo gedit /etc/apache2/apache2.conf  // Accedemos al archivo de configuración de apache2 para poder habilitar el servicio 
+  y que a la hora de conectarnos nos de servicio (localhost/phpmyadmin en navegador para probar)
 
   /** Debajo del último Include del archivo ponemos este otro:
   
