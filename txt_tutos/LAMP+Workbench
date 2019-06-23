@@ -1,91 +1,118 @@
 # LAMP
 https://www.youtube.com/watch?v=YggXN_xJKbs
 
-//Comandos para instalar LAMP en ubuntu
+//Comandos para instalar pila LAMP en ubuntu
 
-  $ sudo apt-get update
-  $ sudo apt-get install apache2
-  $ sudo ufw status                 // Comprobamos el firewall 
-  $ sudo ufw enable                 // Habilitamos el firewall
-  $ sudo ufw app list               // Vemos listado de aplicaciones permitidas para ufw
-  $ sudo ufw app info Apache Full // Comprobamos que los puertos que usa apache mediante el protocolo TCP/IP están abiertos
+  # Actualizamos la paquetería
+ 
+ $ sudo apt-get update
+ $ sudo apt-get upgrade
 
-  /** Escribimos localhost en nuestro navegador para comprobar que apache server está bien configurado
+# Paquetes adicionales
 
-  $ sudo ufw allow in "Apache Full"  //NOTA*--> Si los puertos estuvieran dehabilitados
-  $ sudo apt install mysql-server    // Instalamos el servidor
-  $ sudo mysql_secure_installation   // Asistente de seguridad de mysql
-	----ponemos NO
-	----ponemos Contraseña
-	----ponemos SI
-	----ponemos SI
-	----ponemos SI
-	----ponemos SI
+ $ sudo apt-get install ubuntu-restricted-extras
 
-  $ sudo mysql -u root -p	     // Accedemos al servidor
-  mysql> show databases;	     // Comprobamos conexión pidiéndole ver las db que tiene (en principio son las que viene por defecto)
+# Instalamos cifrado SSH + paquet de herramientas critográficas OPENSSL
 
-  $ sudo apt install php libapache2-mod-php php-mysql -y  // Instalamos php
-  $ sudo service apache2 restart    // Reseteamos el servicio de apache
+ $ sudo apt-get install openssh-server
+ $ sudo apt-get install openssl
 
-  /** Hacemos una prueba para ver si php está bien configurado
-  // Nos vamos a /var/www/html  //Aquí es donde tendríamos que ubicar todas nuestros proyectos (páginas web.... etc)
-  // Sobre este directorio no tendríamos permisos... así que vamos a dar los permisos necesarios
-  $ sudo chown -R $USER:root /var/www  
-  // Ahora crearemos en esta ruta /var/www/html un scprit en php para comprobar que funciona
-  $ sudo gedit info.php
-  // Y escribimos dentro lo siguiente:
-	<?php
-	phpinfo();
-	?>
-  // Luego escribimos en nuestro navegador localhost/info.php
+ //Entramos en el siguiente archivo de configuración:
 
-  $ sudo apt-get install phpmyadmin     // Instalamos phpmyadmin
-	----dejamos tal cual
-	----ponemos SI
-	----ponemos contraseña (he puesto la misma que mysql)
-        ----confirmamos contraseña
+ $ sudo nano /etc/ssh/sshd_config
 
-  $ sudo gedit /etc/apache2/apache2.conf  // Accedemos al archivo de configuración de apache2 para poder habilitar el servicio 
-  y que a la hora de conectarnos nos de servicio (localhost/phpmyadmin en navegador para probar)
+ //Cambiamos el puerto por seguridad en la siguiente línea que ponga...
+   # What ports, IPs and protocols we listen for...
+   Port 22
+ //Y lo cambiamos por el puerto 8756 (por ejemplo)
 
-  /** Debajo del último Include del archivo ponemos este otro:
+ //También cambiamos algo en la línea que ponga...
+
+   # Authentication:
+   LoginGraceTime 120
+   PermitRootLogin without-password 
+ //Lo ponemos para que no nos pida contraseña
+
+ //Reiniciamos servidor SSH
+
+ $ sudo /etc/init.d/ssh restart
+
+# Instalamos dependencias necesarias
   
-  # include phpmyadmin file
-  Include /etc/phpmyadmin/apache.conf
+ $ sudo apt install apache2 mariadb-server php-mysql php-curl php-json php-cgi php libapache2-mod-php
 
-  $ sudo service apache2 restart   // Reiniciamos apache
+ $ sudo chown -R $USER:root /var/www/
 
-  // localhost/phpmyadmin ---> En nuestro navegador
+# Activamos Apache2 en Ubuntu Server
 
-  // CONEXIÓN CON GESTOR HEIDISQL
-  
-  $ su
-  $ mysql 
-  MariaDB > CREATE DATABASE nombreBaseDatos;  // Creamos una base de datos
+ $ sudo systemctl enable apache2
+ $ sudo systemctl start apache2
+ $ sudo /etc/init.d/apache2 restart
 
-  // Necesitamos gestionar un nuevo usuario
-  MariaDB [(none)]> CREATE USER "josuevhn"@"%" IDENTIFIED BY "P@ssw0rd*";
-Query OK, 0 rows affected (0.01 sec)
+ # Verificamos que está activo
+ 
+ $ sudo systemctl status apache2
 
-MariaDB [(none)]> use empresa;
-Database changed
-MariaDB [empresa]> GRANT ALL ON empresa.* TO "josuevhn"@"%";
-Query OK, 0 rows affected (0.01 sec)
+ # Abrimos un navegador y ponemos la ip del servidor ubuntu
+ 
+ //Vemos qué ip tenemos en ubuntu server
 
-MariaDB [empresa]> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.02 sec)
+ $ ip addr
 
-MariaDB [empresa]> SELECT User,Host FROM mysql.user;
-+----------+-----------+
-| User     | Host      |
-+----------+-----------+
-| root     | 127.0.0.1 |
-| root     | ::1       |
-| josuevhn | localhost |
-| root     | localhost |
-+----------+-----------+
-4 rows in set (0.00 sec)
+ //Ponemos la ip en el navegador
+
+ 192.168.x.x 
+
+ # Ahora toca Mysql
+
+ $ sudo ufw app list
+ $ sudo ufw app info Apache Full
+ $ sudo apt-get install mariadb-client mariadb-server
+ $ sudo -i
+ root$ mysql_secure_installation
+ ponemos contraseña root -->
+ ponemos no -->
+ y ya ponemos todo sí -->
+
+ //Ya podemos entrar y probar mysql
+
+ root$ mysql -u root -p
+
+ //Creamos una base de datos
+
+ CREATE DATABASE empresa;
+
+// Necesitamos gestionar un nuevo usuario
+
+ MariaDB [(none)]> CREATE USER 'nombre_usuario'@'%' IDENTIFIED BY 'contraseña';
+ Query OK, 0 rows affected (0.01 sec)
+
+ //Asignamos privilegios
+
+ MariaDB [(none)]> GRANT ALL PRIVILEGES ON empresa.* TO 'nombre_usuario'@'%';
+
+ //Y para que los privilegios surgan efecto
+
+ MariaDB [(none)]> FLUSH PRIVILEGES;
+ 
+ MariaDB [(none)]> use empresa;
+ Database changed
+ MariaDB [empresa]> GRANT ALL ON empresa.* TO "josuevhn"@"%";
+ Query OK, 0 rows affected (0.01 sec)
+
+ MariaDB [empresa]> FLUSH PRIVILEGES;
+ Query OK, 0 rows affected (0.02 sec)
+
+ MariaDB [empresa]> SELECT User,Host FROM mysql.user;
+ +----------+-----------+
+ | User     | Host      |
+ +----------+-----------+
+ | root     | 127.0.0.1 |
+ | root     | ::1       |
+ | josuevhn | localhost |
+ | root     | localhost |
+ +----------+-----------+
+ 4 rows in set (0.00 sec)
 
 	
 	// SITUARNOS en nuestra DB
@@ -108,10 +135,14 @@ MariaDB [empresa]> SELECT User,Host FROM mysql.user;
   /**LISTAR usuarios y sus bases de datos
   mysql> select u.User,Db from mysql.user u,mysql.db d where u.User=d.User;
 
-  /** BORRAR LAMP DEL SISTEMA
-  $ sudo apt-get remove lamp-server^
+ # Y probamos php 
 
-  
+ //Creamos un scprit en /var/www/html con el nombre de info.php
+
+ <? phpinfo(); ?>
+
+ //Lo probamos en el navegador http://ip_del_servidor/info.php
+
 ----------------000-----------------
 
 # MysqlWorbench
