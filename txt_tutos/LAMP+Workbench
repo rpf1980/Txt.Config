@@ -8,7 +8,7 @@ https://www.youtube.com/watch?v=YggXN_xJKbs
   $ sudo ufw status                 // Comprobamos el firewall 
   $ sudo ufw enable                 // Habilitamos el firewall
   $ sudo ufw app list               // Vemos listado de aplicaciones permitidas para ufw
-  $ sudo ufw app info "Apache Full" // Comprobamos que los puertos que usa apache mediante el protocolo TCP/IP están abiertos
+  $ sudo ufw app info Apache Full // Comprobamos que los puertos que usa apache mediante el protocolo TCP/IP están abiertos
 
   /** Escribimos localhost en nuestro navegador para comprobar que apache server está bien configurado
 
